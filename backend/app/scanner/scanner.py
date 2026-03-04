@@ -1,5 +1,6 @@
 from playwright.async_api import async_playwright
-from playwright_stealth import stealth_async
+import playwright_stealth
+
 from app.network.proxy_pool import get_proxy
 from app.services.telegram_service import send_telegram_alert
 
@@ -44,7 +45,7 @@ async def fetch_page(url: str) -> str:
             page = await context.new_page()
             
             # Anti-Bot (Stealth) korumasını aktif et - sitelerin bot olduğumuzu anlamasını zorlaştırır
-            await stealth_async(page)
+            await playwright_stealth.stealth_async(page)
 
             # Extra navigasyon önlemleri
             await page.set_extra_http_headers({
