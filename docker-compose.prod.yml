@@ -35,7 +35,7 @@ services:
 
   api:
     build: 
-      context: ./backend
+      context: .
       dockerfile: Dockerfile
     container_name: visaslot_api
     restart: always
@@ -53,7 +53,7 @@ services:
 
   worker:
     build: 
-      context: ./backend
+      context: .
       dockerfile: Dockerfile
     container_name: visaslot_worker
     restart: always
@@ -69,7 +69,7 @@ services:
 
   beat:
     build: 
-      context: ./backend
+      context: .
       dockerfile: Dockerfile
     container_name: visaslot_beat
     restart: always

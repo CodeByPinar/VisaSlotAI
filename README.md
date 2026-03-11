@@ -3,8 +3,8 @@
 # � <span style="color:#00e5ff">VisaSlotAI</span> 🌟
 ## 🚀 Next-Generation Autonomous Visa Appointment Scraper & Intelligence Dashboard
 
-> **Bypass WAFs, Track Slots in Real-Time, and Never Miss an Appointment Again.**  
-> *Built for Speed, Stealth, and Scale.*
+> **Track Slots in Real-Time, and Never Miss an Appointment Again.**  
+> *Built for Automation and Scale.*
 
 <br>
 
@@ -22,13 +22,13 @@
 
 </div>
 
-**VisaSlotAI** is a robust, distributed, and high-performance automated system designed to continuously monitor, parse, and alert on visa appointment slot openings. Built with an anti-bot bypass engine and a unified full-stack architecture, it includes a modern "Neon Cyber" dashboard for real-time monitoring.
+**VisaSlotAI** is a robust, distributed, and high-performance automated system designed to continuously monitor, parse, and alert on visa appointment slot openings. Built with a unified full-stack architecture, it includes a modern "Neon Cyber" dashboard for real-time monitoring.
 
 ---
 
 ## ✨ Key Features
 
-*   **🛡️ Anti-Bot Scraping Engine**: Utilizes Playwright with Stealth plugins to bypass Cloudflare, Datadome, and other strict WAFs.
+*   **🕵️ Stealth Automation**: Utilizes Playwright with Stealth plugins to mitigate standard headless browser detections.
 *   **⚡ Distributed Task Processing**: Powered by Celery and Redis to handle concurrent scraping targets efficiently without blocking the main event loop.
 *   **📦 Unified Pip Package**: The entire system operates as a globally installable CLI tool (`visa-api`, `visa-worker`, `visa-beat`).
 *   **🎛️ Neon Cyber Dashboard**: A React-built, internally served Single Page Application (SPA) offering beautiful widgets, real-time analytics, and manual scan triggers.
@@ -123,23 +123,49 @@ VisaSlotAI is built with a decoupled architecture, allowing you to easily snap-i
 
 ## 🛡️ Security & Anti-Detect Mechanics
 
-Modern visa appointment websites (like VFS Global, BLS, iDATA) employ strict Cloudflare and Datadome protections. VisaSlotAI counters this with:
+Modern visa appointment websites employ various bot protections. VisaSlotAI currently uses a foundational layer to avoid basic detection:
 1. **Playwright Stealth**: Injects specific scripts to mask headless browser signatures (e.g., overriding `navigator.webdriver`).
-2. **Humanized Interactions**: Randomized delays, bezier-curve mouse movements, and natural scrolling patterns.
-3. **Session Re-use**: Carefully manages cookies and local storage to avoid triggering "new device" security flags on consecutive runs.
-4. **Rate Limit Evasion**: Configurable Celery Beat intervals ensure the system doesn't spam endpoints, blending in with standard human traffic.
+2. **Configurable Intervals**: Configurable Celery Beat intervals ensure the system doesn't spam endpoints, blending in with standard human traffic.
+
+*(Note: Advanced WAFs like strict Cloudflare or Datadome configurations may still require additional custom proxy combinations or CAPTCHA solving integrations in future updates.)*
 
 ---
 
-## 🚀 Installation & Setup
+## �️ Roadmap & Future Features
 
-### 1. Prerequisites
-*   Python 3.10 or higher
-*   Node.js v18+ (for frontend compilation if making UI changes)
-*   Docker & Docker Compose (for PostgreSQL and Redis)
+We are constantly working to improve the resilience and capabilities of VisaSlotAI. Here is what we are planning for upcoming releases:
 
-### 2. Infrastructure Setup (Database & Redis)
-Navigate to the root directory and start the Docker containers:
+*   **🧩 Advanced WAF Bypass**: Integration with robust solvers (e.g., FlareSolverr) and deeper Datadome evasion techniques.
+*   **🤖 Smart CAPTCHA Solving**: Hook-ins for 3rd-party CAPTCHA solving services (2Captcha, AntiCaptcha) or local AI vision models natively.
+*   **🖱️ Humanized Interactions**: Implementation of Bezier-curve mouse movements, randomized typing speeds, and natural scrolling algorithms.
+*   **🍪 Session Persistence**: Advanced profile management to cache and re-use cookies, avoiding repetitive logins and "new device" security flags.
+*   **🔄 Smart Proxy Pooling**: Built-in architecture to automatically rotate residential/mobile proxies upon rate-limit detection or bans.
+*   **📱 Expanded Notifications**: Direct integrations for SMS (Twilio) and WhatsApp alerts alongside Telegram and Email.
+
+---
+
+## �🚀 Installation & Deployment
+
+VisaSlotAI supports both Local Development and One-Click Cloud Deployments.
+
+### ☁️ Option 1: One-Click Cloud Deployment (Free Tier)
+VisaSlotAI is built with Infrastructure-as-Code (`render.yaml`) to support free, automated cloud scaling.
+1. Sign up on [Render.com](https://render.com)
+2. Go to `New` -> `Blueprint`
+3. Connect your GitHub repository.
+4. Render will automatically parse the `render.yaml` file and deploy the App, Postgres DB, Redis, and Background Workers seamlessly.
+
+### 💻 Option 2: Docker Full-Stack (VPS / Local)
+Deploy the entire integrated system using the production Docker Compose manifest:
+```bash
+git clone https://github.com/CodeByPinar/VisaSlotAI.git
+cd VisaSlotAI
+docker-compose -f docker-compose.prod.yml up -d
+```
+
+### 🛠️ Option 3: Developer Setup (Manual)
+1. **Prerequisites**: Python 3.10+, Node.js v18+, Docker.
+2. **Infrastructure**:
 ```bash
 cd docker
 docker-compose up -d
