@@ -11,6 +11,12 @@
       "country": "Poland",
       "location": "Ankara",
       "url": "https://visa.vfsglobal.com/tur/tr/pol/"
+    },
+    {
+      "provider": "vfs_global",
+      "country": "Denmark",
+      "location": "Ankara",
+      "url": "https://visa.vfsglobal.com/tur/tr/dnk/"
     }
   ]
 }
