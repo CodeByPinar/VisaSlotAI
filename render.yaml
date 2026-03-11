@@ -1,8 +1,8 @@
-services:
+﻿services:
   - type: web
     name: visaslot-api
     env: docker
-    dockerfilePath: ./backend/Dockerfile
+    dockerfilePath: ./Dockerfile
     repo: https://github.com/CodeByPinar/VisaSlotAI
     branch: main
     plan: free
@@ -21,9 +21,10 @@ services:
   - type: worker
     name: visaslot-worker
     env: docker
-    dockerfilePath: ./backend/Dockerfile
+    dockerfilePath: ./Dockerfile
     repo: https://github.com/CodeByPinar/VisaSlotAI
     branch: main
+    plan: free
     dockerCommand: "visa-worker"
     envVars:
       - key: DATABASE_URL
@@ -39,9 +40,10 @@ services:
   - type: worker
     name: visaslot-beat
     env: docker
-    dockerfilePath: ./backend/Dockerfile
+    dockerfilePath: ./Dockerfile
     repo: https://github.com/CodeByPinar/VisaSlotAI
     branch: main
+    plan: free
     dockerCommand: "visa-beat"
     envVars:
       - key: DATABASE_URL
@@ -53,6 +55,10 @@ services:
           type: redis
           name: visaslot-redis
           property: connectionString
+
+  - type: redis
+    name: visaslot-redis
+    plan: free
 
 databases:
   - name: visaslot-db
