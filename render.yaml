@@ -18,6 +18,44 @@
           name: visaslot-redis
           property: connectionString
 
+  - type: web
+    name: visaslot-worker
+    env: docker
+    dockerfilePath: ./Dockerfile
+    repo: https://github.com/CodeByPinar/VisaSlotAI
+    branch: main
+    plan: free
+    dockerCommand: "visa-worker"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: visaslot-db
+          property: connectionString
+      - key: REDIS_URL
+        fromService:
+          type: redis
+          name: visaslot-redis
+          property: connectionString
+
+  - type: web
+    name: visaslot-beat
+    env: docker
+    dockerfilePath: ./Dockerfile
+    repo: https://github.com/CodeByPinar/VisaSlotAI
+    branch: main
+    plan: free
+    dockerCommand: "visa-beat"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: visaslot-db
+          property: connectionString
+      - key: REDIS_URL
+        fromService:
+          type: redis
+          name: visaslot-redis
+          property: connectionString
+
   - type: redis
     name: visaslot-redis
     plan: free
